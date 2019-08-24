@@ -54,6 +54,11 @@ namespace NReflect.NRMembers
     public bool IsExtensionMethod { get; set; }
 
     /// <summary>
+    /// Whether or not the method is async
+    /// </summary>
+    public bool IsAsync { get; set; }
+
+    /// <summary>
     /// Gets a list containing all type parameters of a type.
     /// </summary>
     public List<NRTypeParameter> GenericTypes { get; private set; }

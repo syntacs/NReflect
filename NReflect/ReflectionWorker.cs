@@ -972,6 +972,7 @@ namespace NReflect
       ReflectReturnValueOperation(methodInfo, nrMethod, methodContainer);
 
       nrMethod.IsExtensionMethod = HasMemberAttribute(methodInfo, typeof(ExtensionAttribute));
+      nrMethod.IsAsync = HasMemberAttribute(methodInfo, typeof(AsyncStateMachineAttribute));
       if(nrMethod.IsExtensionMethod)
       {
         nrMethod.Parameters[0].IsExtensionParameter = true;
