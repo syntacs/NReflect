@@ -865,7 +865,7 @@ namespace NReflect
       {
         NRParameter nrParameter = new NRParameter
                                     {
-                                      Name = parameter.Name,
+                                      Name = CSharpKeyWords.DecorateIfKeyWord(parameter.Name),
                                       Type = GetTypeUsage(parameter.ParameterType, parameter, methodBase.DeclaringType),
                                       TypeFullName = parameter.ParameterType.FullName ?? parameter.ParameterType.Name,
                                       ParameterModifier = ParameterModifier.In
