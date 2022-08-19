@@ -58,7 +58,7 @@ namespace NReflect
     /// <param name="useNewAppDomain">If set to true, a new app domain will be used for
     ///                               the reflection.</param>
     /// <returns>The result of the reflection.</returns>
-    public NRAssembly Reflect(string fileName, bool useNewAppDomain = true)
+    public NRAssembly Reflect(string fileName, bool useNewAppDomain = false)
     {
       IFilter filter = null;
       return Reflect(fileName, ref filter, useNewAppDomain);
@@ -72,12 +72,12 @@ namespace NReflect
     /// <param name="useNewAppDomain">If set to true, a new app domain will be used for
     ///                               the reflection.</param>
     /// <returns>The result of the reflection.</returns>
-    public NRAssembly Reflect(string fileName, ref IFilter filter, bool useNewAppDomain = true)
+    public NRAssembly Reflect(string fileName, ref IFilter filter, bool useNewAppDomain = false)
     {
       if (useNewAppDomain)
       {
         // Create the new AppDomain
-        AppDomain newAppDomain = AppDomain.CreateDomain("NReflect-AppDomain", null, null);
+        AppDomain newAppDomain = AppDomain.CreateDomain("NReflect-AppDomain");
         // Create a new instance of Reflector at the new AppDomain
         String dllName = Assembly.GetAssembly(typeof(Reflector)).FullName;
         Reflector reflector = (Reflector)newAppDomain.CreateInstanceAndUnwrap(dllName, "NReflect.Reflector");

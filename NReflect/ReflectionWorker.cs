@@ -152,11 +152,13 @@ namespace NReflect
         public NRAssembly Reflect(string fileName)
         {
             path = Path.GetDirectoryName(fileName);
-            AppDomain.CurrentDomain.ReflectionOnlyAssemblyResolve += CurrentDomain_ReflectionOnlyAssemblyResolve;
-            Assembly assembly = Assembly.ReflectionOnlyLoadFrom(fileName);
+            AppDomain.CurrentDomain.AssemblyResolve += CurrentDomain_ReflectionOnlyAssemblyResolve;
+
+            Assembly assembly = Assembly.LoadFrom(fileName);
 
             NRAssembly nrAssembly = Reflect(assembly);
             nrAssembly.Source = fileName;
+            AppDomain.CurrentDomain.AssemblyResolve -= CurrentDomain_ReflectionOnlyAssemblyResolve;
             return nrAssembly;
         }
 
